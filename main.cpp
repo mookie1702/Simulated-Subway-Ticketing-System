@@ -191,12 +191,12 @@ int main()
 	};
 
 /* 欢迎界面 */
-	loadimage(NULL, _T("欢迎界面.jpg"));
+	loadimage(NULL, _T("image/欢迎界面.jpg"));
 	_getch();			// 按任意键继续
 	cleardevice();		// 清除屏幕内容
 
 /* 系统说明界面 */
-	loadimage(NULL, _T("系统说明界面.jpg"));
+	loadimage(NULL, _T("image/系统说明界面.jpg"));
 	/* 点击指定区域继续 */
 	while (true)
 	{
@@ -211,7 +211,7 @@ int main()
 /* 主菜单界面 */
 MAIN:
 	initgraph(1024, 768);
-	loadimage(NULL, _T("主菜单界面.jpg"));
+	loadimage(NULL, _T("image/主菜单界面.jpg"));
 	/* 将用户选择的起始站和终点站的信息清零 */
 	start_line = 0, start_number = 0;
 	end_line = 0, end_number = 0;
@@ -247,7 +247,7 @@ MAIN:
 		case 1:
 PERCHASE:
 			Resize(NULL, 1428, 805);
-			loadimage(NULL, _T("购票界面.jpg"));
+			loadimage(NULL, _T("image/购票界面.jpg"));
 			/* 确定起点站，终点站 */
 			while (true)
 			{
@@ -264,7 +264,7 @@ PERCHASE:
 					else if ((975 <= mouse.x) & (1362 >= mouse.x) & (458 <= mouse.y) & (507 >= mouse.y))
 					{
 						Resize(NULL, 1080, 810);
-						loadimage(NULL, _T("深圳地铁_返回.jpg"));
+						loadimage(NULL, _T("image/深圳地铁_返回.jpg"));
 						start_line = 0, start_number = 0;
 						while (true)
 						{
@@ -295,7 +295,7 @@ PERCHASE:
 					else if ((975 <= mouse.x) & (1362 >= mouse.x) & (558 <= mouse.y) & (607 >= mouse.y))
 					{
 						Resize(NULL, 1080, 810);
-						loadimage(NULL, _T("深圳地铁_返回.jpg"));
+						loadimage(NULL, _T("image/深圳地铁_返回.jpg"));
 						end_line = 0, end_number = 0;
 						while (true)
 						{
@@ -350,7 +350,7 @@ PERCHASE:
 
 			/* 确定票数和票价界面 */
 			Resize(NULL, 1024, 768);
-			loadimage(NULL, _T("确定票数和票价界面.jpg"));
+			loadimage(NULL, _T("image/确定票数和票价界面.jpg"));
 			ticket_price = ticket(station, start_line, start_number, end_line, end_number);
 			_stprintf_s(price,_T("%d"),ticket_price);
 			setbkmode(OPAQUE);
@@ -390,7 +390,7 @@ BACK:
 						}
 						ticket_totalprice = ticket_number * ticket_price;
 						_stprintf_s(price, _T("%d"), ticket_totalprice);
-						loadimage(NULL, _T("确定票数和票价界面1.jpg"));
+						loadimage(NULL, _T("image/确定票数和票价界面1.jpg"));
 						outtextxy(640, 101, price);
 						while (true)
 						{
@@ -416,7 +416,7 @@ BACK:
 			/* 投币找零界面 */
 			initgraph(1024, 768);
 BACK1:
-			loadimage(NULL, _T("投币找零界面.jpg"));
+			loadimage(NULL, _T("image/投币找零界面.jpg"));
 			while (true)
 			{
 				mouse = getmessage();
@@ -446,7 +446,7 @@ BACK1:
 						{
 							change = money - ticket_totalprice;
 							_stprintf_s(price, _T("%d"), change);
-							loadimage(NULL, _T("找零.jpg"));
+							loadimage(NULL, _T("image/找零.jpg"));
 							setbkmode(OPAQUE);
 							setbkcolor(RGB(255, 255, 255));				// 设置文字背景颜色为白色
 							settextcolor(RGB(0, 0, 0));					// 设置文字颜色为黑色
@@ -477,7 +477,7 @@ BACK1:
 		/* 地图查询界面 */
 		case 2:
 			Resize(NULL, 1080, 810);
-			loadimage(NULL, _T("深圳地铁_查询.jpg"));
+			loadimage(NULL, _T("image/深圳地铁_查询.jpg"));
 			/* 按编码查询车站 */
 BACK2:
 			while (true)
@@ -507,7 +507,7 @@ BACK2:
 							}
 						}
 						Resize(NULL, 1024, 768);
-						loadimage(NULL, _T("查询1.jpg"));
+						loadimage(NULL, _T("image/查询1.jpg"));
 						_stprintf_s(line1, _T("%d"), station[j].line);
 						_stprintf_s(number1, _T("%d"), station[j].number);
 
@@ -541,7 +541,7 @@ BACK2:
 			}
 			/* 接下来的操作界面 */
 			initgraph(1024, 768);
-			loadimage(NULL, _T("接下来的操作界面.jpg"));
+			loadimage(NULL, _T("image/接下来的操作界面.jpg"));
 			while (true)
 			{
 				mouse = getmessage();
