@@ -36,7 +36,7 @@ int ticket(STATION station[], int start_line, int start_number, int end_line, in
 int main()
 {
 	initgraph(1024, 768);						// 绘图窗口初始化,创建绘图窗口,大小为1024x768像素
-	MOUSEMSG mouse;								// 定义鼠标消息
+	ExMessage mouse;								// 定义鼠标消息
 	int choice = 0;								// 定义用户的选择
 	int ticket_number = 0;						// 定义用户填入的所购票数
 	int start, end;								// 定义起点站，终点站
@@ -200,8 +200,8 @@ int main()
 	/* 点击指定区域继续 */
 	while (true)
 	{
-		mouse = GetMouseMsg();			// 获取鼠标消息
-		if(mouse.uMsg == WM_LBUTTONDOWN)
+		mouse = getmessage();			// 获取鼠标消息
+		if(mouse.message == WM_LBUTTONDOWN)
 		{
 			if ((718 <= mouse.x) & (949 >= mouse.x) & (614 <= mouse.y) & (676 >= mouse.y))
 				break;
@@ -218,8 +218,8 @@ MAIN:
 	/* 通过鼠标点击的区域确定用户的选择 */
 	while (true)
 	{
-		mouse = GetMouseMsg();
-		if( mouse.uMsg == WM_LBUTTONDOWN)
+		mouse = getmessage();
+		if( mouse.message == WM_LBUTTONDOWN)
 		{
 			if (( 360 <= mouse.x )&( 661 >= mouse.x )&( 343 <= mouse.y )&( 419 >= mouse.y ))
 			{
@@ -251,8 +251,8 @@ PERCHASE:
 			/* 确定起点站，终点站 */
 			while (true)
 			{
-				mouse = GetMouseMsg();
-				if (mouse.uMsg == WM_LBUTTONDOWN)
+				mouse = getmessage();
+				if (mouse.message == WM_LBUTTONDOWN)
 				{
 					/* 返回主菜单 */
 					if ((109 <= mouse.x) & (341 >= mouse.x) & (622 <= mouse.y) & (735 >= mouse.y))
@@ -268,8 +268,8 @@ PERCHASE:
 						start_line = 0, start_number = 0;
 						while (true)
 						{
-							mouse = GetMouseMsg();
-							if (mouse.uMsg == WM_LBUTTONDOWN)
+							mouse = getmessage();
+							if (mouse.message == WM_LBUTTONDOWN)
 							{
 								/* 返回 */
 								if ((940 <= mouse.x) & (1060 >= mouse.x) & (621 <= mouse.y) & (682 >= mouse.y))
@@ -299,8 +299,8 @@ PERCHASE:
 						end_line = 0, end_number = 0;
 						while (true)
 						{
-							mouse = GetMouseMsg();
-							if (mouse.uMsg == WM_LBUTTONDOWN)
+							mouse = getmessage();
+							if (mouse.message == WM_LBUTTONDOWN)
 							{
 								for (i = 0; i < 131; i++)
 								{
@@ -365,8 +365,8 @@ PERCHASE:
 BACK:
 			while (true)
 			{
-				mouse = GetMouseMsg();
-				if (mouse.uMsg == WM_LBUTTONDOWN)
+				mouse = getmessage();
+				if (mouse.message == WM_LBUTTONDOWN)
 				{
 					/* 返回主菜单 */
 					if ((77 <= mouse.x) & (359 >= mouse.x) & (528 <= mouse.y) & (598 >= mouse.y))
@@ -394,8 +394,8 @@ BACK:
 						outtextxy(640, 101, price);
 						while (true)
 						{
-							mouse = GetMouseMsg();
-							if (mouse.uMsg == WM_LBUTTONDOWN)
+							mouse = getmessage();
+							if (mouse.message == WM_LBUTTONDOWN)
 							{
 								if ((77 <= mouse.x) & (359 >= mouse.x) & (528 <= mouse.y) & (598 >= mouse.y))
 								{
@@ -419,8 +419,8 @@ BACK1:
 			loadimage(NULL, _T("投币找零界面.jpg"));
 			while (true)
 			{
-				mouse = GetMouseMsg();
-				if (mouse.uMsg == WM_LBUTTONDOWN)
+				mouse = getmessage();
+				if (mouse.message == WM_LBUTTONDOWN)
 				{
 					/* 返回主菜单 */
 					if ((117 <= mouse.x) & (346 >= mouse.x) & (528 <= mouse.y) & (597 >= mouse.y))
@@ -458,8 +458,8 @@ BACK1:
 							outtextxy(615, 90, price);
 							while (true)
 							{
-								mouse = GetMouseMsg();
-								if (mouse.uMsg == WM_LBUTTONDOWN)
+								mouse = getmessage();
+								if (mouse.message == WM_LBUTTONDOWN)
 								{
 									if ((665 <= mouse.x) & (942 >= mouse.x) & (532 <= mouse.y) & (598 >= mouse.y))
 									{
@@ -482,8 +482,8 @@ BACK1:
 BACK2:
 			while (true)
 			{
-				mouse = GetMouseMsg();
-				if (mouse.uMsg == WM_LBUTTONDOWN)
+				mouse = getmessage();
+				if (mouse.message == WM_LBUTTONDOWN)
 				{
 					if ((904 <= mouse.x) & (1062 >= mouse.x) & (641 <= mouse.y) & (691 >= mouse.y))
 					{
@@ -525,8 +525,8 @@ BACK2:
 						outtextxy(582, 395, number1);
 						while (true)
 						{
-							mouse = GetMouseMsg();
-							if (mouse.uMsg == WM_LBUTTONDOWN)
+							mouse = getmessage();
+							if (mouse.message == WM_LBUTTONDOWN)
 							{
 								if ((665 <= mouse.x) & (942 >= mouse.x) & (532 <= mouse.y) & (598 >= mouse.y))
 								{
@@ -544,8 +544,8 @@ BACK2:
 			loadimage(NULL, _T("接下来的操作界面.jpg"));
 			while (true)
 			{
-				mouse = GetMouseMsg();
-				if (mouse.uMsg == WM_LBUTTONDOWN)
+				mouse = getmessage();
+				if (mouse.message == WM_LBUTTONDOWN)
 				{
 					/* 返回主菜单 */
 					if ((114 <= mouse.x) & (365 >= mouse.x) & (517 <= mouse.y) & (588 >= mouse.y))
