@@ -1,42 +1,50 @@
-#include <stdio.h>			// 引用标准输入输出头文件
-#include <cstdio>
-#include <stdlib.h>			// 引用标准函数库头文件
-#include <cstdlib>
-#include <time.h>			// 引用时间函数库头文件
-#include <math.h>			// 引用数学函数库头文件
-#include <string.h>			// 引用字符函数库头文件
-#include <easyx.h>			// 引用图形函数库头文件
-#include <conio.h>
-/* 引用头文件 */
+/* 包含头文件 */
+#include <stdio.h>		// 标准输入输出头文件
+#include <stdlib.h>		// 标准函数库头文件
+#include <time.h>		// 时间函数库头文件
+#include <math.h>		// 数学函数库头文件
+#include <string.h>		// 字符函数库头文件
+#include <easyx.h>		// 图形函数库头文件
+#include <conio.h>		// 控制台输入输出头文件
 
-constexpr auto N = 131;		// 五条地铁线路车站总数
-constexpr auto NAME = 15;	// 名字字符串最长长度
 /* 定义宏常量 */
+const auto N = 131;		// 五条地铁线路车站总数
+const auto NAME = 15;	// 名字字符串最长长度
 
+/******************************
+定义车站结构体STATION
+name_en：车站的英文名
+name_zh：车站的中文名
+line：车站所在的几号线
+number：车站所在该线的第几个站台
+x：该站在地图图片上的 x坐标
+y：该站在地图图片上的 y坐标
+order：该站的编码 
+********************************/
 typedef struct station
 {
-	char name[NAME];
-	char cname[NAME];
+	char name_en[NAME];
+	char name_zh[NAME];
 	int line;
 	int number;
 	int x;
 	int y;
-	int ma;
+	int order;
 }STATION;
-/* 定义车站结构体数据: 车站英文名,车站中文名,所在几号线,位于该线的第几个站台,该站在地图上的 x坐标,该站在地图上的 y坐标,该站的编码 */
 
-int ticket(STATION station[], int start_line, int start_number, int end_line, int end_number);
 /******************************
 定义函数
-函数功能：		计算两个站点的车票单价；
-函数调用参数：	车站结构体数组(STATION)，起始站的线号(int)，起始站所在的站台号(int)，终点站的线号(int)，终点站所在的站台号(int)；
-函数返回值：	本次乘车的车票单价(int)；
+函数功能：计算两个站点的车票单价；
+输入参数：车站结构体数组(STATION)，起始站的线号(int)，起始站所在的站台号(int)，终点站的线号(int)，终点站所在的站台号(int)；
+输出参数：本次乘车的车票单价(int)；
 ******************************/
+int ticket(STATION station[], int start_line, int start_number, int end_line, int end_number);
+
 
 int main()
 {
 	initgraph(1024, 768);						// 绘图窗口初始化,创建绘图窗口,大小为1024x768像素
-	ExMessage mouse;								// 定义鼠标消息
+	ExMessage mouse;							// 定义鼠标消息
 	int choice = 0;								// 定义用户的选择
 	int ticket_number = 0;						// 定义用户填入的所购票数
 	int start, end;								// 定义起点站，终点站
@@ -55,7 +63,7 @@ int main()
 	char stationfind[10];
 	LOGFONT word;								// 定义字体
 
-/* 定义车站结构体数组，并将其初始化 */
+	// 定义车站结构体数组，并将其初始化
 	STATION  station[N] = 
 	{{"luohu",		"罗湖站"	,1,1,845,573,0},
 	{"guomao",		"国贸站"	,1,2,845,527,1},
@@ -360,8 +368,8 @@ PERCHASE:
 			word.lfHeight = 60;							// 设置字体高度为 60
 			settextstyle(&word);
 			outtextxy(640, 101, price);
-			outtextxy(200,240 , station[start].cname);
-			outtextxy(640,240 , station[end].cname);
+			outtextxy(200,240 , station[start].name_zh);
+			outtextxy(640,240 , station[end].name_zh);
 BACK:
 			while (true)
 			{
@@ -500,7 +508,7 @@ BACK2:
 						}
 						for (i = 0; i < N; i++)
 						{
-							if (station[i].ma == station_find)
+							if (station[i].order == station_find)
 							{
 								j = i;
 								break;
@@ -520,7 +528,7 @@ BACK2:
 						word.lfQuality = ANTIALIASED_QUALITY;
 						settextstyle(&word);
 
-						outtextxy(445, 244, station[j].cname);
+						outtextxy(445, 244, station[j].name_zh);
 						outtextxy(247, 392, line1);
 						outtextxy(582, 395, number1);
 						while (true)
@@ -584,7 +592,7 @@ int ticket(STATION station[], int start_line, int start_number, int end_line, in
 		{
 			for (j = 0;j < N ; j++)
 			{
-				if (strcmp(station[i].name, station[j].name) == 0 && station[i].line == start_line && station[j].line == end_line)
+				if (strcmp(station[i].name_en, station[j].name_en) == 0 && station[i].line == start_line && station[j].line == end_line)
 				{
 					k = station[i].number;
 					h = station[j].number;
